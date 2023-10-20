@@ -42,34 +42,26 @@ La barra de navegación inferior contiene tres elementos:
 - **"Mejor valorados"**: Muestra películas mejor valoradas y tiene un ícono de estrella.
 
 En esta Practica del proyeto Hicimos lo soguiente:
+La función _getMediaList() es responsable de construir y devolver una lista de widgets, específicamente widgets de tipo MediaList, que son componentes de interfaz de usuario utilizados para mostrar listas de películas o programas de televisión. La elección entre películas y programas de televisión se basa en el valor de la variable mediaType.
 
-### `MEDIA.DART:`
-En este archivo, definimos la clase Media, que representa un medio, como una película o programa de televisión. Los atributos de la clase incluyen:
+List<Widget> _getMediaList() {
+    return (mediaType == MediaType.movie)
+        ? <Widget>[
+            new MediaList(movieProvider, "popular"),
+            new MediaList(movieProvider, "upcoming"),
+            new MediaList(movieProvider, "top_rated")
+          ]
+        : <Widget>[
+            new MediaList(showProvider, "popular"),
+            new MediaList(showProvider, "on_the_air"),
+            new MediaList(showProvider, "top_rated")
+          ];
+}
+Si mediaType es igual a MediaType.movie, la función crea tres instancias de MediaList, una para cada categoría de películas: "popular," "upcoming," y "top_rated." Estas instancias se crean utilizando el proveedor de medios de películas (movieProvider) y la categoría correspondiente. Cada MediaList es un widget que mostrará una lista de películas de la categoría seleccionada.
 
-id: Un identificador único para el medio.
-voteAverage: La calificación promedio del medio.
-title: El título del medio.
-posterPath: La ruta del póster del medio.
-backdropPath: La ruta de la imagen de fondo del medio.
-overview: Una descripción general del medio.
-releaseDate: La fecha de lanzamiento del medio.
-genreIds: Una lista de identificadores de género asociados al medio.
-Además, defines varios métodos en la clase Media, como getPosterUrl(), getBackDropUrl(), getGenres(), y getReleaseYear(), que se utilizan para obtener URLs de imágenes, géneros y el año de lanzamiento del medio.
+Si mediaType no es igual a MediaType.movie, la función crea tres instancias de MediaList, una para cada categoría de programas de televisión: "popular," "on_the_air," y "top_rated." Estas instancias se crean utilizando el proveedor de medios de programas de televisión (showProvider) y la categoría correspondiente. Cada MediaList es un widget que mostrará una lista de programas de televisión de la categoría seleccionada.
 
-La clase Media también tiene un constructor de fábrica llamado factory Media, que se utiliza para crear instancias de Media a partir de un mapa JSON.
-
-### `MEDIA_LIST_ITEM.DART:`
-En este archivo, definimos la clase MediaListItem, que es un widget de Flutter utilizado para representar elementos individuales de la lista de medios en la página de inicio. Aquí hay una explicación de cómo funciona:
-
-En el constructor de MediaListItem, se pasa un objeto Media como argumento.
-El widget Card se utiliza para representar cada elemento de la lista en una tarjeta.
-Dentro de la tarjeta, se utiliza FadeInImage.assetNetwork para mostrar una imagen de fondo. Esta imagen se carga desde una URL remota y utiliza una imagen de marcador de posición mientras se carga la imagen principal.
-Se agrego un degradado (un fondo gris semi-transparente) encima de la imagen de fondo para hacer que el texto sea más legible.
-Se muestra el título del medio (media.title) en la parte inferior izquierda de la tarjeta.
-En la parte inferior derecha de la tarjeta, se muestra la calificación (media.voteAverage) y la fecha de lanzamiento (media.releaseDate) del medio.
-En resumen, MEDIA_LIST_ITEM.DART define un widget reutilizable llamado MediaListItem que se utiliza para mostrar elementos individuales de la lista de medios con una imagen de fondo, título, calificación y fecha de lanzamiento.
-
-En conjunto, estos archivos forman parte de la interfaz de usuario de la aplicación "MovieApp-200931" y se utilizan para mostrar información detallada sobre las películas o programas de televisión en la página de inicio
+Esta función permite que la aplicación "MovieApp-200931" sea versátil y se adapte a las preferencias del usuario al mostrar diferentes categorías de contenido. Los usuarios pueden cambiar entre películas y programas de televisión, y la función _getMediaList() garantiza que se muestre la información correcta en la página de inicio.
 
 ## Capturas de Pantalla
 <p align="center">
