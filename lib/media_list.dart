@@ -46,19 +46,21 @@ class _MediaListState extends State<MediaList> {
   // Define una clase que extiende State y representa el estado interno de MediaList.
   @override
   Widget build(BuildContext context) {
-    return new Container(
-      child: new ListView.builder(
+    return Container(
+      child: ListView.builder(
         itemCount: _media.length,
         itemBuilder: (BuildContext context, int index) {
-          return new ElevatedButton(
-            child: new MediaListItem(_media[index]),
-            onPressed: () {
-              Navigator.push(context, new MaterialPageRoute(builder: (context) {
-                return new MediaDetail(_media[index]);
-              }));
-            },
+          return Container(
+            padding: const EdgeInsets.all(8), // Establece el margen aquí
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return MediaDetail(_media[index]);
+                }));
+              },
+              child: MediaListItem(_media[index]),
+            ),
           );
-          // return new MediaListItem(_media[index]);
         },
       ),
     );
