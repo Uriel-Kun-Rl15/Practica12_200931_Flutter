@@ -44,19 +44,6 @@ La barra de navegación inferior contiene tres elementos:
 En esta Practica del proyeto Hicimos lo soguiente:
 La función _getMediaList() es responsable de construir y devolver una lista de widgets, específicamente widgets de tipo MediaList, que son componentes de interfaz de usuario utilizados para mostrar listas de películas o programas de televisión. La elección entre películas y programas de televisión se basa en el valor de la variable mediaType.
 
-List<Widget> _getMediaList() {
-    return (mediaType == MediaType.movie)
-        ? <Widget>[
-            new MediaList(movieProvider, "popular"),
-            new MediaList(movieProvider, "upcoming"),
-            new MediaList(movieProvider, "top_rated")
-          ]
-        : <Widget>[
-            new MediaList(showProvider, "popular"),
-            new MediaList(showProvider, "on_the_air"),
-            new MediaList(showProvider, "top_rated")
-          ];
-}
 Si mediaType es igual a MediaType.movie, la función crea tres instancias de MediaList, una para cada categoría de películas: "popular," "upcoming," y "top_rated." Estas instancias se crean utilizando el proveedor de medios de películas (movieProvider) y la categoría correspondiente. Cada MediaList es un widget que mostrará una lista de películas de la categoría seleccionada.
 
 Si mediaType no es igual a MediaType.movie, la función crea tres instancias de MediaList, una para cada categoría de programas de televisión: "popular," "on_the_air," y "top_rated." Estas instancias se crean utilizando el proveedor de medios de programas de televisión (showProvider) y la categoría correspondiente. Cada MediaList es un widget que mostrará una lista de programas de televisión de la categoría seleccionada.
