@@ -56,12 +56,27 @@ class MediaDetail extends StatelessWidget {
                         overflow: TextOverflow.fade,
                         maxLines: 1,
                         style: new TextStyle(
-                          color: Colors.white,
-                          fontSize: 30.0,
-                          fontFamily: 'MiFuente'
-                        ),
-                      ))
+                            color: Colors.white,
+                            fontSize: 24.0,
+                            fontFamily: 'MiFuente'),
+                      )),
+                      new Text(
+                        '${media.voteAverage.toString()}/10',
+                        style: new TextStyle(
+                            color: Colors.white,
+                            fontSize: 24.0,
+                            fontFamily: 'MiFuente'),
+                      )
                     ]),
+                  ),
+                  new Column(
+                    children: <Widget>[
+                      new Text(
+                        media.overview,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 3,
+                      )
+                    ],
                   )
                 ],
               ),
