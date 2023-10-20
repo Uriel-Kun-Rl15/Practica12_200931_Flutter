@@ -38,6 +38,7 @@ Future<List<Media>> fetchMovies({String category = "populares"}) async {
     },
   );
 
+
   return getJson(uri).then((data) {
     if (category == "upcoming") {
       var sortedResults = data['results']
