@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:movieapp_20091/model/Media.dart'; // 
+import 'package:movieapp_20091/model/Media.dart'; //
 import 'dart:ui' as ui;
-class MediaDetail extends StatelessWidget{
-final Media media;
-MediaDetail(this.media);
+
+class MediaDetail extends StatelessWidget {
+  final Media media;
+  MediaDetail(this.media);
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return new Scaffold(
-      body: new Stack(fit: StackFit.expand,
-      children: <Widget>[
-        new Image.network(
-          media.getBackDropUrl(),
-          fit: BoxFit.cover,
-        ),
+      body: new Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          new Image.network(
+            media.getBackDropUrl(),
+            fit: BoxFit.cover,
+          ),
           new BackdropFilter(
             filter: new ui.ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),
             child: new Container(
@@ -31,12 +33,42 @@ MediaDetail(this.media);
                       width: 390.0,
                       height: 390.0,
                     ),
+                    decoration: new BoxDecoration(
+                        borderRadius: new BorderRadius.circular(10.0),
+                        image: new DecorationImage(
+                            image: new NetworkImage(media.getPosterUrl())),
+                        boxShadow: [
+                          new BoxShadow(
+                              color: Colors.black,
+                              blurRadius: 20.0,
+                              offset: new Offset(0.0, 10.0))
+                        ]),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  new Container(
+                    margin: const EdgeInsets.symmetric(vertical: 6.0),
+                    child: new Row(children: <Widget>[
+                      new Expanded(
+                          child: new Text(
+                        media.title,
+                        overflow: TextOverflow.fade,
+                        maxLines: 1,
+                        style: new TextStyle(
+                          color: Colors.white,
+                          fontSize: 30.0,
+                          fontFamily: 'MiFuente'
+                        ),
+                      ))
+                    ]),
                   )
                 ],
               ),
             ),
           )
-      ],),
+        ],
+      ),
     );
   }
 }
